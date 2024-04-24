@@ -201,13 +201,13 @@ class SistemaMedico(KnowledgeEngine):
 
 
 
-#if __name__ == "__main__":
- #   procesarInformacion()
-  #  motor = SistemaMedico()
-   # while(1):
-    #    motor.reset()
-     #   motor.run()
-      #  print("¿Le gustaria diagnosticar otro sintomas?")
-       # if input()=="no":
-        #    exit()
+if __name__ == "__main__":
+    procesarInformacion()
+    motor = SistemaMedico()
+    while(1):
+        motor.reset()
+        motor.run()
+        print("¿Le gustaria diagnosticar otro sintomas?")
+        if input()=="no":
+          exit()
 
