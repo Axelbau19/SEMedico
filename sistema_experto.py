@@ -35,10 +35,8 @@ def identificarEnfermedad(*arguments):
     listaSintomas = []
     for sintoma in arguments:
         listaSintomas.append(sintoma)
-    try:
-        return mapeoSintomas[str(listaSintomas)]
-    except KeyError:
-        return "No se encontró una enfermedad correspondiente a estos síntomas."
+
+    return mapeoSintomas[str(listaSintomas)]
 
 def agregarEnfermedad(enfermedad):
     rutaNuevaEnfermedad = "SintomasEnfermedad/"+enfermedad+".txt"
@@ -51,7 +49,6 @@ def agregarEnfermedad(enfermedad):
             with open(rutaNuevaEnfermedad,"w") as archivoSintoma:
                 archivoSintoma.write(input("¿Esta cubierto de puntos?:"))
                 archivoSintoma.write("\n"+input("¿Tiene temperatura alta?: "))
-
 
             with open(descripcionEnfermedad,"w"):
                 pass
@@ -180,7 +177,7 @@ class SistemaMedico(KnowledgeEngine):
           Diagnostico(diarrea=MATCH.diarrea),
           NOT(Diagnostico(enfermedad=MATCH.enfermedad)),salience= - 999)
     def notMatche(self,cubiertoPuntos,ojosRojos,tosSeca,dolorArticulacion,muchoEstornudo,dolorCabeza,temblorViolento,escalofrios,cuerpoCortado,dolorAbdominal,diarrea):
-        print("\n¿No se encontro ninguna enfermedad con los sintomas anteriores?")
+        print("\nNo se encontro ninguna enfermedad con los sintomas anteriores")
         lista = [cubiertoPuntos,ojosRojos,tosSeca,dolorArticulacion,muchoEstornudo,dolorCabeza,temblorViolento,escalofrios,cuerpoCortado,dolorAbdominal,diarrea]
         maxCuenta = 0
         maximaEnferemdad = ""
