@@ -3,4 +3,3 @@ Influenza
 Malaria
 Gripe
 Tifoidea
-Cataratas

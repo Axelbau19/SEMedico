@@ -208,4 +208,4 @@ class SistemaMedico(KnowledgeEngine):
        # if input()=="no":
         #    exit()
 
-agregarEnfermedad("Cataratas")
+agregarEnfermedad("Obesidad")
