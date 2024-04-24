@@ -50,8 +50,7 @@ def agregarEnfermedad(enfermedad):
             archivoEnfermedad.write("\n"+enfermedad)
             with open(rutaNuevaEnfermedad,"w") as archivoSintoma:
                 archivoSintoma.write(input("¿Esta cubierto de puntos?:"))
-                archivoSintoma.write(input("¿Tiene temperatura alta?: "))
-
+                archivoSintoma.write("\n"+input("¿Tiene temperatura alta?: "))
 
 
             with open(descripcionEnfermedad,"w"):
@@ -212,4 +211,3 @@ class SistemaMedico(KnowledgeEngine):
        # if input()=="no":
         #    exit()
 
-agregarEnfermedad("Obesidad")
