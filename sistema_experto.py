@@ -48,8 +48,12 @@ def agregarEnfermedad(enfermedad):
         if enfermedad not in enfermedadExistentes:
             archivoEnfermedad.seek(0,2)
             archivoEnfermedad.write("\n"+enfermedad)
-            with open(rutaNuevaEnfermedad,"w"):
-                pass
+            with open(rutaNuevaEnfermedad,"w") as archivoSintoma:
+                archivoSintoma.write(input("¿Esta cubierto de puntos?:"))
+                archivoSintoma.write(input("¿Tiene temperatura alta?: "))
+
+
+
             with open(descripcionEnfermedad,"w"):
                 pass
             print(f"Enfermedad '{enfermedad}' agregada")
