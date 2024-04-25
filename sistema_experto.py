@@ -1,3 +1,4 @@
+
 from experta import  *
 #Creacion de nuestra variables
 #lista
@@ -26,6 +27,9 @@ def procesarInformacion():
         enfermedadesData = enfermedadArchivo.read()
         diccionarioDescripcionEnfermedad[enfermedad] = enfermedadesData
         enfermedadArchivo.close()
+    print(listaEnfermedad)
+    print(mapeoSintomas)
+    print(diccionarioDescripcionEnfermedad)
 #
 def identificarEnfermedad(*arguments):
     listaSintomas = []
@@ -33,9 +37,26 @@ def identificarEnfermedad(*arguments):
         listaSintomas.append(sintoma)
 
     return mapeoSintomas[str(listaSintomas)]
+
+def agregarEnfermedad(enfermedad):
+    rutaNuevaEnfermedad = "SintomasEnfermedad/"+enfermedad+".txt"
+    descripcionEnfermedad = "DescripcionEnfermedad/"+enfermedad+".txt"
+    with open("enfermedades.txt", "r+") as archivoEnfermedad:
+        enfermedadExistentes = archivoEnfermedad.read()
+        if enfermedad not in enfermedadExistentes:
+            archivoEnfermedad.seek(0,2)
+            archivoEnfermedad.write("\n"+enfermedad)
+            with open(rutaNuevaEnfermedad,"w") as archivoSintoma:
+                archivoSintoma.write(input("¿Esta cubierto de puntos?:"))
+                archivoSintoma.write("\n"+input("¿Tiene temperatura alta?: "))
+
+            with open(descripcionEnfermedad,"w"):
+                pass
+            print(f"Enfermedad '{enfermedad}' agregada")
+        else:
+            print("Ya existe")
 def detallesEnfermedad(enfermedad):
     return diccionarioDescripcionEnfermedad[enfermedad]
-
 
 def siNohayMatch(enfermedad):
     print("")
@@ -138,7 +159,7 @@ class SistemaMedico(KnowledgeEngine):
         idEnfermedad = enfermedad
         descripcionEnfermedad = detallesEnfermedad(idEnfermedad)
         print("")
-        print("La enfermedad que tiene el paciente es: %s\n" % (idEnfermedad))
+        print("Puede ser que la enfermedad que tiene el paciente es: %s\n" % (idEnfermedad))
         print("Descripcion de la enfermedad: \n")
         print(descripcionEnfermedad + "\n")
 
@@ -156,52 +177,20 @@ class SistemaMedico(KnowledgeEngine):
           Diagnostico(diarrea=MATCH.diarrea),
           NOT(Diagnostico(enfermedad=MATCH.enfermedad)),salience= - 999)
     def notMatche(self,cubiertoPuntos,ojosRojos,tosSeca,dolorArticulacion,muchoEstornudo,dolorCabeza,temblorViolento,escalofrios,cuerpoCortado,dolorAbdominal,diarrea):
-        print("\nNo se encontró ninguna enfermedad con los síntomas anteriores")
-        lista = [cubiertoPuntos, ojosRojos, tosSeca, dolorArticulacion, muchoEstornudo, dolorCabeza, temblorViolento,
-                 escalofrios, cuerpoCortado, dolorAbdominal, diarrea]
+        print("\nNo se encontro ninguna enfermedad con los sintomas anteriores")
+        lista = [cubiertoPuntos,ojosRojos,tosSeca,dolorArticulacion,muchoEstornudo,dolorCabeza,temblorViolento,escalofrios,cuerpoCortado,dolorAbdominal,diarrea]
         maxCuenta = 0
-        maximaEnfermedad = ""
-        for key, val in mapeoSintomas.items():
-            cuenta = 0
+        maximaEnferemdad = ""
+        for key,val in mapeoSintomas.items():
+            cuenta= 0
             lista2 = eval(key)
-            for j in range(0, len(lista)):
-                if (lista2[j] == lista[j] and lista[j] == "si"):
-                    cuenta += 1
+            for j in range(0,len(lista)):
+                if(lista2[j] == lista[j] and lista[j] == "si"):
+                    cuenta+=1
             if cuenta > maxCuenta:
                 maxCuenta = cuenta
-                maximaEnfermedad = val
-
-        if maximaEnfermedad:
-            siNohayMatch(maximaEnfermedad)
-        else:
-            print("No se encontró ninguna enfermedad coincidente.")
-    #def agregarEnfermedad(enfermedad):
-     #   rutaNuevaEnfermedad = "SintomasEnfermedad/"+enfermedad+".txt"
-      #  descripcionEnfermedad = "DescripcionEnfermedad/"+enfermedad+".txt"
-       # with open("enfermedades.txt", "r+") as archivoEnfermedad:
-        #    enfermedadExistentes = archivoEnfermedad.read()
-         #   if enfermedad not in enfermedadExistentes:
-          #      archivoEnfermedad.seek(0,2)
-           #     archivoEnfermedad.write("\n"+enfermedad)
-            #    with open(rutaNuevaEnfermedad,"w") as archivoSintoma:
-             #       archivoSintoma.write(input("¿Esta cubierto de puntos?:"))
-              #      archivoSintoma.write("\n"+input("¿Tiene temperatura alta?: "))
-               #     archivoEnfermedad.write("\n"+input("¿Tiene los ojos rojos?: "))
-                #    archivoEnfermedad.write("\n" + input("¿Tiene tos seca?: "))
-                 #   archivoEnfermedad.write("\n" + input("¿Tiene dolor de articulación?: "))
-                  #  archivoEnfermedad.write("\n" + input("¿Tiene mucho estornudo?: "))
-                   # archivoEnfermedad.write("\n" + input("¿Tiene dolor de cabeza?: "))
-                    #archivoEnfermedad.write("\n" + input("¿Tiembla violentamente?: "))
-                    #archivoEnfermedad.write("\n" + input("¿Tiene escalofrios?: "))
-                    #archivoEnfermedad.write("\n" + input("¿Tiene cuerpo cortado?: "))
-                    #archivoEnfermedad.write("\n" + input("¿Tiene falta de apetito?: "))
-                    #archivoEnfermedad.write("\n" + input("¿Tiene dolor abdominal?: "))
-                    #archivoEnfermedad.write("\n" + input("¿Tiene diarrea?: "))
-                #with open(descripcionEnfermedad,"w"):
-                 #   pass
-               # print(f"Enfermedad '{enfermedad}' agregada")
-            #else:
-             #   print("Ya existe")
+                maximaEnferemdad = val
+        siNohayMatch(maximaEnferemdad)
 
 
 
