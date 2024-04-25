@@ -27,9 +27,6 @@ def procesarInformacion():
         enfermedadesData = enfermedadArchivo.read()
         diccionarioDescripcionEnfermedad[enfermedad] = enfermedadesData
         enfermedadArchivo.close()
-    print(listaEnfermedad)
-    print(mapeoSintomas)
-    print(diccionarioDescripcionEnfermedad)
 #
 def identificarEnfermedad(*arguments):
     listaSintomas = []
