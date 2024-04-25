@@ -199,7 +199,7 @@ class SistemaMedico(KnowledgeEngine):
                     #archivoEnfermedad.write("\n" + input("¿Tiene diarrea?: "))
                 #with open(descripcionEnfermedad,"w"):
                  #   pass
-                #print(f"Enfermedad '{enfermedad}' agregada")
+               # print(f"Enfermedad '{enfermedad}' agregada")
             #else:
              #   print("Ya existe")
 
