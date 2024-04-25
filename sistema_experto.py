@@ -38,23 +38,6 @@ def identificarEnfermedad(*arguments):
 
     return mapeoSintomas[str(listaSintomas)]
 
-def agregarEnfermedad(enfermedad):
-    rutaNuevaEnfermedad = "SintomasEnfermedad/"+enfermedad+".txt"
-    descripcionEnfermedad = "DescripcionEnfermedad/"+enfermedad+".txt"
-    with open("enfermedades.txt", "r+") as archivoEnfermedad:
-        enfermedadExistentes = archivoEnfermedad.read()
-        if enfermedad not in enfermedadExistentes:
-            archivoEnfermedad.seek(0,2)
-            archivoEnfermedad.write("\n"+enfermedad)
-            with open(rutaNuevaEnfermedad,"w") as archivoSintoma:
-                archivoSintoma.write(input("¿Esta cubierto de puntos?:"))
-                archivoSintoma.write("\n"+input("¿Tiene temperatura alta?: "))
-
-            with open(descripcionEnfermedad,"w"):
-                pass
-            print(f"Enfermedad '{enfermedad}' agregada")
-        else:
-            print("Ya existe")
 def detallesEnfermedad(enfermedad):
     return diccionarioDescripcionEnfermedad[enfermedad]
 
